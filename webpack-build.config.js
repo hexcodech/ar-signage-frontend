@@ -1,26 +1,28 @@
-const debug = process.env.NODE_ENV !== "production";
-const webpack = require("webpack");
 const path = require("path");
+const webpack = require("webpack");
 const context = path.resolve(__dirname);
 
 process.traceDeprecation = true; //https://github.com/webpack/loader-utils/issues/56
 
 module.exports = {
-	entry: [
-		"react-hot-loader/patch",
-		"webpack-hot-middleware/client",
-		path.join(__dirname, "src/js/main.jsx")
-	],
+	devtool: "cheap-module-source-map",
+
+	entry: [path.join(__dirname, "src/js/main.jsx")],
 
 	output: {
-		path: path.join(__dirname, "build/js/"),
+		path: path.join(__dirname, "src/js/"),
 		filename: "bundle.js",
 		publicPath: "/js/"
 	},
 
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoEmitOnErrorsPlugin()
+		new webpack.DefinePlugin({
+			"process.env": {
+				NODE_ENV: JSON.stringify("production")
+			}
+		}),
+		new webpack.optimize.UglifyJsPlugin(), //minify everything
+		new webpack.optimize.AggressiveMergingPlugin() //Merge chunks
 	],
 
 	resolve: {
@@ -44,9 +46,6 @@ module.exports = {
 
 				use: [
 					{
-						loader: "react-hot-loader/webpack"
-					},
-					{
 						loader: "babel-loader",
 						options: {
 							presets: ["es2015", "es2016", "es2017", "react"],
@@ -62,7 +61,7 @@ module.exports = {
 											}
 										},
 										context: context,
-										webpackHotModuleReloading: true
+										webpackHotModuleReloading: false
 									}
 								]
 							]
