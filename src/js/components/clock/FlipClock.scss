@@ -1,0 +1,22 @@
+.clock {
+	font-size: 72px;
+	float: left;
+
+	display: flex;
+	position: relative;
+
+	align-items: center;
+	align-content: center;
+	flex-direction: row;
+
+	overflow-x: hidden;
+}
+
+.minutes {
+	color: inherit;
+	margin-right: .75rem;
+}
+
+.seconds {
+	color: inherit;
+}
