@@ -9,13 +9,16 @@ const Digit = ({ value, anim }) => {
 				<span>
 					{value === 0 ? 9 : value - 1}
 				</span>
-				<div styleName="current-top">
+
+				<div styleName="flip current-top top">
 					{value === 0 ? 9 : value - 1}
 				</div>
-				<div styleName="next">
+
+				<div styleName="flip next top">
 					{value}
 				</div>
-				<div styleName="next-bottom">
+
+				<div styleName="flip next-bottom bottom">
 					{value}
 				</div>
 			</div>

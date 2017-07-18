@@ -6,9 +6,11 @@
 	display: inline-block;
 
 	background-color: #333;
-	border: #222 2px solid;
+	box-shadow: inset 0 0 0 3px #222;
 	border-radius: 5px;
 	color: #fff;
+
+	overflow: hidden;
 
 	&:after {
 		position: absolute;
@@ -16,7 +18,9 @@
 		left: 0;
 		right: 0;
 		content: "";
-		border-top: #222 1px solid;
+		border-top: #222 2px solid;
+
+		z-index: 12;
 
 		clear: both;
 	}
@@ -39,68 +43,52 @@
 	}
 }
 
-.current-top {
+.flip{
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
 
-	overflow: hidden;
-	padding: .5rem;
-
 	background-color: #333;
-	border: #222 1px solid;
-	border-bottom: none;
-	border-radius: 5px 5px 0 0;
+	box-shadow: inset 0 0 0 3px #222;
+
+	overflow: hidden;
+
+	padding: .5rem;
 
 	transform-origin: center;
-
-	z-index: 10;
-
-	-webkit-clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-	clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-
-	animation: flipTop 1s linear 0s forwards;
 }
 
-.next {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-
-	padding: .5rem;
-
-	z-index: 9;
+.top{
+	border-radius: 5px 5px 0 0;
 
 	-webkit-clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
 	clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
 }
-.next-bottom {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
 
-	overflow: hidden;
-	padding: .5rem;
-
-	background-color: #333;
-	border: #222 1px solid;
-	border-top: none;
+.bottom{
 	border-radius: 0 0 5px 5px;
 
 	-webkit-clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0% 100%);
 	clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0% 100%);
+}
 
-	transform: rotateX(90deg);
-	transform-origin: center;
+.current-top {
 	z-index: 10;
 
-	animation: flipBottom 1s linear 0s forwards;
+	animation: flipTop .5s linear 0s forwards;
+}
+
+.next {
+	z-index: 9;
+}
+
+.next-bottom {
+	z-index: 10;
+
+	transform: rotateX(90deg);
+	animation: flipBottom .5s linear 0s forwards;
 }
 
 @keyframes flipTop {
