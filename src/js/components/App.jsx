@@ -11,7 +11,6 @@ const App = ({ store }) => {
 			<div>
 				<Layout />
 				<DevTools />
-				<FlipClock />
 			</div>
 		</Provider>
 	);

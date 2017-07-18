@@ -1,6 +1,9 @@
 import React from "react";
 
 import Header from "./Header";
+import Media from "./Media";
+
+import "./Layout.scss";
 
 export default class Layout extends React.Component {
   constructor() {
@@ -16,8 +19,9 @@ export default class Layout extends React.Component {
 
   render() {
     return (
-      <div>
+      <div styleName="layout">
         <Header />
+        <Media />
       </div>
     );
   }
