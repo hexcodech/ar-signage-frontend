@@ -4,31 +4,11 @@ import Digit from "js/components/clock/Digit";
 
 import "./FlipClock.scss";
 
-class FlipClock extends React.Component {
-	constructor(props) {
-		super(props);
+const FlipClock = (props) =>{
+		const { minutes, seconds} = props;
 
-		this.state = {
-			m: 0,
-			s: 0
-		};
-	}
-
-	componentDidMount = () => {
-		setInterval(() => {
-			if (this.state.s >= 59) {
-				this.setState({ m: this.state.m + 1, s: 0 });
-			} else {
-				this.setState({ s: this.state.s + 1 });
-			}
-		}, 1000);
-	};
-
-	render = () => {
-		const { m: minutes, s: seconds, anim } = this.state;
-
-		const minuteString = ("00" + minutes).slice(-2);
-		const secondString = ("00" + seconds).slice(-2);
+		const minuteString = ("0" + minutes).slice(-2);
+		const secondString = ("0" + seconds).slice(-2);
 
 		const m1 = parseInt(minuteString.substr(0, 1)),
 			m2 = parseInt(minuteString.substr(1, 2)),
@@ -47,7 +27,6 @@ class FlipClock extends React.Component {
 				</div>
 			</div>
 		);
-	};
 }
 
 export default FlipClock;

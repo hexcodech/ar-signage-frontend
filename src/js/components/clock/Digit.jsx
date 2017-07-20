@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Digit.scss";
 
-const Digit = ({ value, anim }) => {
+const Digit = ({ value }) => {
 	return (
 		<div styleName="digit">
 			<div styleName="current">
