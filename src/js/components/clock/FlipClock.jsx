@@ -26,6 +26,7 @@ const FlipClock = (props) =>{
 					<Digit key={"1" + m1} value={m1} />
 					<Digit key={"2" + m2} value={m2} />
 				</div>
+				:
 				<div styleName="seconds">
 					<Digit key={"1" + s1} value={s1} />
 					<Digit key={"2" + s2} value={s2} />

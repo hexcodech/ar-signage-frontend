@@ -15,10 +15,10 @@ export default class Layout extends React.Component {
         running: true
       },
       media: {
-        type: null,
+        type: "text/plain",
         headerVisible: true,
         url: null,
-        text: null
+        text: "Finde den Ausgang, indem du laut Jodelst und dich im Kreis drehst und den Schlüssel in das Schloss steckst und somit die Tür öffnest."
       }
     }
   }

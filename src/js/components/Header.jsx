@@ -6,14 +6,14 @@ import "./Header.scss";
 export default class Header extends React.Component {
   render() {
     return (
-        <div>
+        <div styleName="header">
           {this.props.media.headerVisible ?
-            <div styleName="header">
-              <div styleName="logo">
-                <img src="/img/ar-logo.png" />
+              <div styleName="header-content">
+                <div styleName="logo">
+                  <img src="/img/ar-logo.png" />
+                </div>
+                {this.props.media.type ? <FlipClock seconds={this.props.seconds} /> : "" }
               </div>
-              {this.props.media.type ? <FlipClock seconds={this.props.seconds} /> : "" }
-            </div>
           : ""}
         </div>
     );
