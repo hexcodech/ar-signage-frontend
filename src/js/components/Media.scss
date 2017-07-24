@@ -1,14 +1,17 @@
 .media{
   width: 100%;
+  position: relative;
 
   display: flex;
   flex: 2;
+
   align-items: center;
   justify-content: center;
 
   background-color: #000;
   font-size: 15em;
 
+  overflow: auto;
 }
 
 .text{
@@ -17,4 +20,16 @@
   text-align: center;
   color: #FFF;
   font-size: 3rem;
+}
+
+.image{
+  position: absolute;
+
+  top:0;
+  bottom:0;
+  left: 0;
+  right: 0;
+
+  background-repeat: no-repeat;
+  background-size: 100% auto;
 }

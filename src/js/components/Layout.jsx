@@ -11,14 +11,14 @@ export default class Layout extends React.Component {
     this.state = {
       displayId: "default",
       timer: {
-        seconds: 120,
+        seconds: 3600,
         running: true
       },
       media: {
-        type: "text/plain",
+        type: "image/png",
         headerVisible: true,
-        url: null,
-        text: "Finde den Ausgang, indem du laut Jodelst und dich im Kreis drehst und den Schlüssel in das Schloss steckst und somit die Tür öffnest."
+        url: "https://source.unsplash.com/1920x1080/?escape",
+        text: null
       }
     }
   }
