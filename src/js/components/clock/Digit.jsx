@@ -7,11 +7,11 @@ const Digit = ({ value }) => {
 		<div styleName="digit">
 			<div styleName="current">
 				<span>
-					{value === 0 ? 9 : value - 1}
+					{value === 9 ? 0 : value + 1}
 				</span>
 
 				<div styleName="flip current-top top">
-					{value === 0 ? 9 : value - 1}
+					{value === 9 ? 0 : value + 1}
 				</div>
 
 				<div styleName="flip next top">

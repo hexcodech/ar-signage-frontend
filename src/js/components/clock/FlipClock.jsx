@@ -5,7 +5,12 @@ import Digit from "js/components/clock/Digit";
 import "./FlipClock.scss";
 
 const FlipClock = (props) =>{
-		const { minutes, seconds} = props;
+		let { minutes, seconds} = props;
+
+		if(!minutes){
+			minutes = Math.floor(seconds/60);
+			seconds = seconds - minutes * 60;
+		}
 
 		const minuteString = ("0" + minutes).slice(-2);
 		const secondString = ("0" + seconds).slice(-2);
