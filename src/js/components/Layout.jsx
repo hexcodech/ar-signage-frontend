@@ -11,13 +11,13 @@ export default class Layout extends React.Component {
     this.state = {
       displayId: "default",
       timer: {
-        seconds: 3600,
+        seconds: 15,
         running: true
       },
       media: {
-        type: "image/png",
-        headerVisible: true,
-        url: "https://source.unsplash.com/1920x1080/?escape",
+        type: "video/mp4",
+        headerVisible: false,
+        url: "/img/ar-test.mp4",
         text: null
       }
     }
@@ -38,11 +38,17 @@ export default class Layout extends React.Component {
     }, 1000);
   }
 
+  removeMedia() {
+    this.setState((prevState, props) => {
+      return {media: {type: null, url: null, headerVisible: true}};
+    });
+  }
+
   render() {
     return (
       <div styleName="layout">
         <Header seconds={this.state.timer.seconds} media={this.state.media}/>
-        <Media seconds={this.state.timer.seconds} media={this.state.media}/>
+        <Media seconds={this.state.timer.seconds} media={this.state.media} removeMedia={this.removeMedia.bind(this)}/>
       </div>
     );
   }
