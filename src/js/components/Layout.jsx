@@ -11,13 +11,13 @@ export default class Layout extends React.Component {
     this.state = {
       displayId: "default",
       timer: {
-        seconds: 15,
-        running: true
+        seconds: 3600,
+        running: false
       },
       media: {
-        type: "video/mp4",
-        headerVisible: false,
-        url: "/img/ar-test.mp4",
+        type: null,
+        headerVisible: true,
+        url: null,
         text: null,
         position: 0
       }
