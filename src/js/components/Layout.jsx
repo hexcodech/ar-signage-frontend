@@ -18,7 +18,8 @@ export default class Layout extends React.Component {
         type: "video/mp4",
         headerVisible: false,
         url: "/img/ar-test.mp4",
-        text: null
+        text: null,
+        position: 0
       }
     }
   }
@@ -40,15 +41,43 @@ export default class Layout extends React.Component {
 
   removeMedia() {
     this.setState((prevState, props) => {
-      return {media: {type: null, url: null, headerVisible: true}};
+      return {media: {
+                type: null,
+                headerVisible: true,
+                url: null,
+                text: null,
+                position: 0
+              }
+            }
+    });
+  }
+
+  updatePosition(position) {
+    this.setState((prevState, props) => {
+      return {media: {
+                type: prevState.media.type,
+                headerVisible: prevState.media.headerVisible,
+                url: prevState.media.url,
+                text: prevState.media.text,
+                position: position
+              }
+            }
     });
   }
 
   render() {
     return (
       <div styleName="layout">
-        <Header seconds={this.state.timer.seconds} media={this.state.media}/>
-        <Media seconds={this.state.timer.seconds} media={this.state.media} removeMedia={this.removeMedia.bind(this)}/>
+        <Header
+          seconds={this.state.timer.seconds}
+          media={this.state.media}
+        />
+        <Media
+          seconds={this.state.timer.seconds}
+          media={this.state.media}
+          removeMedia={this.removeMedia.bind(this)}
+          updatePosition={this.updatePosition.bind(this)}
+        />
       </div>
     );
   }
