@@ -1,8 +1,12 @@
 import { combineReducers } from "redux";
 
 //import reducers
-import sample from "js/reducers/sample";
+import displayId from "js/reducers/display-id";
+import timer from "js/reducers/timer";
+import media from "js/reducers/media";
 
 export default combineReducers({
-	sample
+	displayId,
+	timer,
+	media
 });
