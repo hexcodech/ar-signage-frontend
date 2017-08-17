@@ -4,10 +4,15 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { AppContainer } from "react-hot-loader";
 import thunkMiddleware from "redux-thunk";
 import throttle from "lodash/throttle";
+import io from "socket.io-client";
 
 import App from "js/components/App";
 import appReducer from "js/reducers/app";
 import { loadState, saveState } from "js/utilities/local-storage";
+
+import { setDisplayId } from "js/actions/display-id";
+import { setMedia } from "js/actions/media";
+import { setTimer, startTimer, stopTimer } from "js/actions/timer";
 
 import DevTools from "js/components/dev/DevTools";
 const presistedState = loadState();
@@ -25,6 +30,35 @@ const store = createStore(
 	presistedState,
 	composed
 );
+
+//connect to socketio server
+const socket = io();
+socket.on("uistate", data => {
+	const newState = JSON.parse(data),
+		state = store.getState();
+
+	if (newState.displayId !== state.displayId) {
+		store.dispatch(setDisplayId(newState.displayId));
+	}
+
+	if (
+		newState.media.type !== state.media.type ||
+		newState.media.url !== state.media.url ||
+		newState.media.position !== state.media.position
+	) {
+		store.dispatch(
+			setMedia(newState.media.type, newState.media.url, newState.media.position)
+		);
+	}
+
+	if (newState.timer.seconds !== state.timer.seconds) {
+		store.dispatch(setTimer(newState.timer.seconds));
+	}
+
+	if (newState.timer.running !== state.timer.running) {
+		store.dispatch(newState.timer.running ? startTimer() : stopTimer());
+	}
+});
 
 //storing some keys of the application state in the localstorage
 store.subscribe(
