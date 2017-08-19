@@ -34,11 +34,9 @@ const Media = ({ dispatch, media }) => {
 							}}
 							onTimeUpdate={() => {
 								dispatch(
-									setMediaPosition(
+									setMediaRemaining(
 										Math.round(
-											this.currentVideo.currentTime /
-												this.currentVideo.duration *
-												100
+											this.currentVideo.duration - this.currentVideo.currentTime
 										)
 									)
 								);

@@ -44,10 +44,14 @@ socket.on("uistate", data => {
 	if (
 		newState.media.type !== state.media.type ||
 		newState.media.url !== state.media.url ||
-		newState.media.position !== state.media.position
+		newState.media.remaining !== state.media.remaining
 	) {
 		store.dispatch(
-			setMedia(newState.media.type, newState.media.url, newState.media.position)
+			setMedia(
+				newState.media.type,
+				newState.media.url,
+				newState.media.remaining
+			)
 		);
 	}
 
@@ -70,6 +74,10 @@ store.subscribe(
 				/*authentication: state.app.authentication*/
 			}
 		});
+
+		if (state.media.remaining !== 0 && !isNaN(state.media.remaining)) {
+			socket.emit("updateRemaining", state.media.remaining);
+		}
 	}, 1000)
 );
 

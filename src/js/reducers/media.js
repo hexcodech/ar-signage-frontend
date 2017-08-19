@@ -4,7 +4,7 @@ const media = (
 		headerVisible: true,
 		url: null,
 		text: null,
-		position: 0
+		remaining: 0
 	},
 	action
 ) => {
@@ -17,7 +17,7 @@ const media = (
 				type: action.type,
 				url: action.url,
 				text: null,
-				position: action.position ? action.position : 0
+				remaining: action.remaining ? action.remaining : 0
 			};
 
 		case "CLEAR_MEDIA":
@@ -27,7 +27,7 @@ const media = (
 				headerVisible: true,
 				url: null,
 				text: null,
-				position: 0
+				remaining: 0
 			};
 
 		case "SET_TEXT":
@@ -36,8 +36,8 @@ const media = (
 		case "CLEAR_TEXT":
 			return { ...state, text: null };
 
-		case "SET_MEDIA_POSITION":
-			return { ...state, position: action.position };
+		case "SET_MEDIA_REMAINING":
+			return { ...state, remaining: action.remaining };
 		default:
 			return state;
 	}

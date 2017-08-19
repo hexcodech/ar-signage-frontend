@@ -5,12 +5,12 @@ export const setHeaderVisibility = headerVisible => {
 	};
 };
 
-export const setMedia = (type, url, position = 0) => {
+export const setMedia = (type, url, remaining = 0) => {
 	return {
 		type: "SET_MEDIA",
 		type,
 		url,
-		position
+		remaining
 	};
 };
 
@@ -33,9 +33,9 @@ export const clearText = () => {
 	};
 };
 
-export const setMediaPosition = position => {
+export const setMediaRemaining = remaining => {
 	return {
-		type: "SET_MEDIA_POSITION",
-		position
+		type: "SET_MEDIA_REMAINING",
+		remaining
 	};
 };
