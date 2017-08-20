@@ -4,15 +4,15 @@ import { connect } from "react-redux";
 import FlipClock from "js/components/clock/FlipClock";
 import "./Header.scss";
 
-const Header = ({ media }) => {
+const Header = ({ headerVisible, mediaType }) => {
 	return (
 		<div styleName="header">
-			{media.headerVisible
+			{headerVisible
 				? <div styleName="header-content">
 						<div styleName="logo">
-							<img src="/img/ar-logo.png" />
+							<img src="img/ar-logo.png" />
 						</div>
-						{media.type ? <FlipClock /> : ""}
+						{mediaType ? <FlipClock /> : ""}
 					</div>
 				: ""}
 		</div>
@@ -21,7 +21,8 @@ const Header = ({ media }) => {
 
 const mapStateToProps = state => {
 	return {
-		media: state.app.media
+		mediaType: state.app.media.type,
+		headerVisible: state.app.media.headerVisible
 	};
 };
 

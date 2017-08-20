@@ -11,7 +11,7 @@ import appReducer from "js/reducers/app";
 import { loadState, saveState } from "js/utilities/local-storage";
 
 import { setDisplayId } from "js/actions/display-id";
-import { setMedia } from "js/actions/media";
+import { setMedia, setText } from "js/actions/media";
 import { setTimer, startTimer, stopTimer } from "js/actions/timer";
 
 import DevTools from "js/components/dev/DevTools";
@@ -32,19 +32,17 @@ const store = createStore(
 );
 
 //connect to socketio server
-const socket = io();
-socket.on("uistate", data => {
-	const newState = JSON.parse(data),
-		state = store.getState();
-
-	if (newState.displayId !== state.displayId) {
-		store.dispatch(setDisplayId(newState.displayId));
-	}
+const socket = io("192.168.178.73");
+socket.on("uiState", data => {
+	const newState = data,
+		state = store.getState().app;
 
 	if (
-		newState.media.type !== state.media.type ||
-		newState.media.url !== state.media.url ||
-		newState.media.remaining !== state.media.remaining
+		newState.media &&
+		state.media &&
+		(newState.media.type !== state.media.type ||
+			newState.media.url !== state.media.url ||
+			newState.media.remaining !== state.media.remaining)
 	) {
 		store.dispatch(
 			setMedia(
@@ -55,11 +53,27 @@ socket.on("uistate", data => {
 		);
 	}
 
-	if (newState.timer.seconds !== state.timer.seconds) {
+	if (
+		newState.media &&
+		state.media &&
+		newState.media.text !== state.media.text
+	) {
+		store.dispatch(setText(newState.media.text));
+	}
+
+	if (
+		newState.timer &&
+		state.timer &&
+		newState.timer.seconds !== state.timer.seconds
+	) {
 		store.dispatch(setTimer(newState.timer.seconds));
 	}
 
-	if (newState.timer.running !== state.timer.running) {
+	if (
+		newState.timer &&
+		state.timer &&
+		newState.timer.running != state.timer.running
+	) {
 		store.dispatch(newState.timer.running ? startTimer() : stopTimer());
 	}
 });
@@ -67,7 +81,7 @@ socket.on("uistate", data => {
 //storing some keys of the application state in the localstorage
 store.subscribe(
 	throttle(() => {
-		const state = store.getState();
+		const state = store.getState().app;
 
 		saveState({
 			app: {
@@ -75,7 +89,12 @@ store.subscribe(
 			}
 		});
 
-		if (state.media.remaining !== 0 && !isNaN(state.media.remaining)) {
+		if (
+			state.media &&
+			state.media.remaining &&
+			state.media.remaining !== 0 &&
+			!isNaN(state.media.remaining)
+		) {
 			socket.emit("updateRemaining", state.media.remaining);
 		}
 	}, 1000)

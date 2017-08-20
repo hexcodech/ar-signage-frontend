@@ -17,16 +17,17 @@ app.use(require("webpack-hot-middleware")(compiler));
 
 app.use("/css", express.static(path.resolve(__dirname, "../src/css")));
 app.use("/img", express.static(path.resolve(__dirname, "../src/img")));
-app.use("/js", express.static(path.resolve(__dirname, "../ssrc/js")));
+app.use("/js", express.static(path.resolve(__dirname, "../src/js")));
+app.use("/font", express.static(path.resolve(__dirname, "../src/font")));
 
 app.get("*", (req, res) => {
 	res.sendFile(path.resolve(__dirname, "../src/index.html"));
 });
 
-app.listen(8080, err => {
+app.listen(8081, err => {
 	if (err) {
 		return console.error(err);
 	}
 
-	console.log("Listening at http://localhost:8080/");
+	console.log("Listening at http://localhost:8081/");
 });

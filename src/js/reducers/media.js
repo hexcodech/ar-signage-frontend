@@ -14,10 +14,10 @@ const media = (
 		case "SET_MEDIA":
 			return {
 				...state,
-				type: action.type,
+				type: action.mimeType,
 				url: action.url,
 				text: null,
-				remaining: action.remaining ? action.remaining : 0
+				remaining: action.remaining
 			};
 
 		case "CLEAR_MEDIA":

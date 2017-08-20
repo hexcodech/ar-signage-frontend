@@ -8,23 +8,7 @@ import Digit from "js/components/clock/Digit";
 import "./FlipClock.scss";
 
 class FlipClock extends React.Component {
-	componentDidMount = () => {
-		if (this.interval) {
-			return;
-		}
-
-		this.interval = setInterval(() => {
-			const { dispatch, timer } = this.props;
-
-			if (timer.running) {
-				if (timer.seconds > 0) {
-					dispatch(setTimer(timer.seconds - 1));
-				} else if (timer.seconds <= 0) {
-					dispatch(stopTimer());
-				}
-			}
-		}, 1000);
-	};
+	componentDidMount = () => {};
 
 	render = () => {
 		const { timer } = this.props;

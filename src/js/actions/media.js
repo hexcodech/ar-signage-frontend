@@ -5,10 +5,10 @@ export const setHeaderVisibility = headerVisible => {
 	};
 };
 
-export const setMedia = (type, url, remaining = 0) => {
+export const setMedia = (mimeType, url, remaining = 0) => {
 	return {
 		type: "SET_MEDIA",
-		type,
+		mimeType,
 		url,
 		remaining
 	};

@@ -8,7 +8,8 @@ all:
 	mkdir $(BUILD); \
 	cp src/index.html $(BUILD)/index.html; \
 	cp -r src/css/ $(BUILD)/css/; \
+	cp -r src/font/ $(BUILD)/font/; \
 	cp -r src/img $(BUILD)/img; \
-	$(WEBPACK) --config "$(BUILD_CONFIG)"; \
+	$(WEBPACK) --config "$(BUILD_CONFIG)";
 clean:
 	rm -rf $(BUILD)
