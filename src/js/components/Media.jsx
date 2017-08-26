@@ -27,7 +27,7 @@ class Media extends React.Component {
 				{mediaType && mediaType.startsWith("image")
 					? <div
 							styleName="image"
-							style={{ backgroundImage: "url(" + media.url + ")" }}
+							style={{ backgroundImage: "url(" + mediaUrl + ")" }}
 						/>
 					: ""}
 				{mediaType && mediaType.startsWith("video")

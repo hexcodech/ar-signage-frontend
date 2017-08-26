@@ -32,7 +32,7 @@ const store = createStore(
 );
 
 //connect to socketio server
-const socket = io("192.168.178.73");
+const socket = io("http://localhost:4100");
 socket.on("uiState", data => {
 	const newState = data,
 		state = store.getState().app;
