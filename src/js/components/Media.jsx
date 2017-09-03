@@ -19,46 +19,56 @@ class Media extends React.Component {
 		return (
 			<div styleName="media">
 				{!mediaType ? <FlipClock /> : ""}
-				{mediaType && mediaType.startsWith("text")
-					? <div styleName="text">
-							{mediaText}
-						</div>
-					: ""}
-				{mediaType && mediaType.startsWith("image")
-					? <div
-							styleName="image"
-							style={{ backgroundImage: "url(" + mediaUrl + ")" }}
-						/>
-					: ""}
-				{mediaType && mediaType.startsWith("video")
-					? <div styleName="video">
-							<video
-								autoPlay
-								onEnded={() => {
-									dispatch(clearMedia());
-									this.currentVideo = null;
-								}}
-								ref={video => {
-									this.currentVideo = video;
-								}}
-								onTimeUpdate={() => {
-									if (!this.currentVideo) {
-										return;
-									}
+				{mediaType && mediaType.startsWith("text") ? (
+					<div styleName="text">{mediaText}</div>
+				) : (
+					""
+				)}
+				{mediaType && mediaType.startsWith("image") ? (
+					<div
+						styleName="image"
+						style={{ backgroundImage: "url(" + mediaUrl + ")" }}
+					/>
+				) : (
+					""
+				)}
+				{mediaType && mediaType.startsWith("video") ? (
+					<div styleName="video">
+						<video
+							autoPlay
+							onEnded={() => {
+								dispatch(clearMedia());
+								this.currentVideo = null;
+							}}
+							ref={video => {
+								this.currentVideo = video;
+							}}
+							onTimeUpdate={() => {
+								if (!this.currentVideo) {
+									return;
+								}
 
-									dispatch(
-										setMediaRemaining(
-											Math.round(
-												this.currentVideo.duration -
-													this.currentVideo.currentTime
-											)
+								dispatch(
+									setMediaRemaining(
+										Math.round(
+											this.currentVideo.duration - this.currentVideo.currentTime
 										)
-									);
-								}}
-								src={mediaUrl}
-							/>
-						</div>
-					: ""}
+									)
+								);
+							}}
+							onEnded={() => {
+								if (!this.currentVideo) {
+									return;
+								}
+
+								dispatch(setMediaRemaining(0));
+							}}
+							src={mediaUrl}
+						/>
+					</div>
+				) : (
+					""
+				)}
 			</div>
 		);
 	};
