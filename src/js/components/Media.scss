@@ -9,9 +9,15 @@
 	justify-content: center;
 
 	background-color: #000;
-	font-size: 15em;
+	font-size: 25vw;
 
 	overflow: auto;
+}
+
+@media (min-width: 1200px) {
+	.media {
+		font-size: 15rem;
+	}
 }
 
 .text {

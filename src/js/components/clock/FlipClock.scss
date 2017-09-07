@@ -4,19 +4,23 @@
 	align-items: center;
 	align-content: center;
 	flex-direction: row;
+	flex-wrap: nowrap;
 
 	text-align: center;
-	color: #FFF;
+	color: #fff;
+	margin: 0;
 
 	overflow: hidden;
 }
 
 .minutes {
-	color: inherit;
-	margin-right: .02em;
+	display: flex;
+	flex-wrap: nowrap;
+	margin-right: 0.02em;
 }
 
 .seconds {
-	color: inherit;
-	margin-left: .04em;
+	display: flex;
+	flex-wrap: nowrap;
+	margin-left: 0.04em;
 }
