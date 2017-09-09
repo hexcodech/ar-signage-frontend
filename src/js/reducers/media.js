@@ -17,7 +17,8 @@ const media = (
 				type: action.mimeType,
 				url: action.url,
 				text: null,
-				remaining: action.remaining
+				remaining: action.remaining,
+				headerVisible: action.headerVisible
 			};
 
 		case "CLEAR_MEDIA":

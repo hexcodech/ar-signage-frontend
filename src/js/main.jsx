@@ -42,16 +42,25 @@ socket.on("uiState", data => {
 		state.media &&
 		(newState.media.type !== state.media.type ||
 			newState.media.url !== state.media.url ||
-			newState.media.remaining !== state.media.remaining)
+			newState.media.remaining !== state.media.remaining ||
+			newState.media.headerVisible !== state.media.headerVisible)
 	) {
 		store.dispatch(
 			setMedia(
 				newState.media.type,
 				newState.media.url,
-				newState.media.remaining
+				newState.media.remaining,
+				newState.media.headerVisible
 			)
 		);
 	}
+
+	console.log(
+		newState.media,
+		state.media,
+		newState.media.text,
+		state.media.text
+	);
 
 	if (
 		newState.media &&
