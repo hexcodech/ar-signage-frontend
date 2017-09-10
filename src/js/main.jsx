@@ -55,13 +55,6 @@ socket.on("uiState", data => {
 		);
 	}
 
-	console.log(
-		newState.media,
-		state.media,
-		newState.media.text,
-		state.media.text
-	);
-
 	if (
 		newState.media &&
 		state.media &&
