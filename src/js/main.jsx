@@ -17,7 +17,7 @@ import { setTimer, startTimer, stopTimer } from "js/actions/timer";
 import DevTools from "js/components/dev/DevTools";
 const presistedState = loadState();
 
-const DEV_TOOLS = true;
+const DEV_TOOLS = false;
 
 const composed = DEV_TOOLS
 	? compose(applyMiddleware(thunkMiddleware), DevTools.instrument())
@@ -32,7 +32,7 @@ const store = createStore(
 );
 
 //connect to socketio server
-const socket = io("http://localhost:4100");
+const socket = io();
 socket.on("uiState", data => {
 	const newState = data,
 		state = store.getState().app;
