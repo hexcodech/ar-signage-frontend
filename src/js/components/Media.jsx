@@ -18,8 +18,6 @@ class Media extends React.Component {
 			return;
 		}
 
-		console.log("s");
-
 		this.props.dispatch(
 			setMediaRemaining(
 				Math.round(this.currentVideo.duration - this.currentVideo.currentTime)
