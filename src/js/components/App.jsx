@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 
-import DevTools from "js/components/dev/DevTools";
+// import DevTools from "js/components/dev/DevTools";
 import Layout from "js/components/Layout";
 
 const App = ({ store }) => {
@@ -9,7 +9,7 @@ const App = ({ store }) => {
 		<Provider store={store}>
 			<div>
 				<Layout />
-				<DevTools />
+				{/* <DevTools /> */}
 			</div>
 		</Provider>
 	);
