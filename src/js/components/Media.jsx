@@ -13,20 +13,6 @@ class Media extends React.Component {
 		super();
 	}
 
-	updateRemaining = throttle(() => {
-		if (!this.currentVideo) {
-			return;
-		}
-
-		console.log("s");
-
-		this.props.dispatch(
-			setMediaRemaining(
-				Math.round(this.currentVideo.duration - this.currentVideo.currentTime)
-			)
-		);
-	}, 1000);
-
 	render = () => {
 		const { dispatch, mediaType, mediaText, mediaUrl } = this.props;
 
@@ -51,20 +37,32 @@ class Media extends React.Component {
 						<video
 							autoPlay
 							onEnded={() => {
-								if (!this.currentVideo) {
-									return;
-								}
-
-								console.log("kljsdh");
-
 								dispatch(clearMedia());
-								dispatch(setMediaRemaining(0));
 								this.currentVideo = null;
 							}}
 							ref={video => {
 								this.currentVideo = video;
 							}}
-							onTimeUpdate={this.updateRemaining}
+							onTimeUpdate={() => {
+								if (!this.currentVideo) {
+									return;
+								}
+
+								dispatch(
+									setMediaRemaining(
+										Math.round(
+											this.currentVideo.duration - this.currentVideo.currentTime
+										)
+									)
+								);
+							}}
+							onEnded={() => {
+								if (!this.currentVideo) {
+									return;
+								}
+
+								dispatch(setMediaRemaining(0));
+							}}
 							src={mediaUrl}
 						/>
 					</div>
