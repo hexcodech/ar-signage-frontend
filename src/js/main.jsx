@@ -80,27 +80,26 @@ socket.on("uiState", data => {
 	}
 });
 
+const updateRemaining = throttle(() => {
+	const state = store.getState().app;
+
+	if (state.media && !isNaN(state.media.remaining)) {
+		socket.emit("updateRemaining", state.media.remaining);
+	}
+}, 1000);
+
 //storing some keys of the application state in the localstorage
-store.subscribe(
-	throttle(() => {
-		const state = store.getState().app;
+store.subscribe(() => {
+	const state = store.getState().app;
 
-		saveState({
-			app: {
-				/*authentication: state.app.authentication*/
-			}
-		});
-
-		if (
-			state.media &&
-			state.media.remaining &&
-			state.media.remaining !== 0 &&
-			!isNaN(state.media.remaining)
-		) {
+	if (state.media && !isNaN(state.media.remaining)) {
+		if (state.media.remaining == 0) {
 			socket.emit("updateRemaining", state.media.remaining);
+		} else {
+			updateRemaining();
 		}
-	}, 1000)
-);
+	}
+});
 
 ReactDOM.render(
 	<AppContainer>
