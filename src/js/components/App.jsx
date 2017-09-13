@@ -9,7 +9,7 @@ const App = ({ store }) => {
 		<Provider store={store}>
 			<div>
 				<Layout />
-				<DevTools />
+				{/* <DevTools /> */}
 			</div>
 		</Provider>
 	);
